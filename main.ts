@@ -1,3 +1,7 @@
+namespace StatusBarKind {
+    export const Timer = StatusBarKind.create()
+    export const PointSystem = StatusBarKind.create()
+}
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     if (characterAnimations.matchesRule(Cannonbolt, characterAnimations.rule(Predicate.FacingDown))) {
         animation.runImageAnimation(
@@ -505,6 +509,11 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     }
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
+    if (true) {
+    	
+    }
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
 	
 })
 let Cannonbolt: Sprite = null
@@ -529,6 +538,31 @@ Cannonbolt = sprites.create(img`
 controller.moveSprite(Cannonbolt, 90, 90)
 tiles.setTilemap(tilemap`level1`)
 scene.cameraFollowSprite(Cannonbolt)
+let statusbar = statusbars.create(20, 4, StatusBarKind.Health)
+let statusbar2 = statusbars.create(20, 4, StatusBarKind.Timer)
+let statusbar3 = statusbars.create(20, 4, StatusBarKind.PointSystem)
+statusbar.setBarBorder(1, 15)
+statusbar.setBarSize(30, 6)
+statusbar.max = 100
+statusbar.value = 100
+statusbar.setColor(5, 4)
+statusbar.setOffsetPadding(1, 1)
+statusbar.setOffsetPadding(-40, 4)
+statusbar.positionDirection(CollisionDirection.Left)
+statusbar2.setBarBorder(1, 15)
+statusbar2.setBarSize(30, 6)
+statusbar2.max = 100
+statusbar2.value = 100
+statusbar2.setColor(7, 0)
+statusbar2.setOffsetPadding(0, 4)
+statusbar2.positionDirection(CollisionDirection.Left)
+statusbar3.setBarBorder(1, 15)
+statusbar3.setBarSize(30, 6)
+statusbar3.max = 100
+statusbar3.value = 0
+statusbar3.setColor(10, 0)
+statusbar3.setOffsetPadding(16, 4)
+statusbar3.positionDirection(CollisionDirection.Left)
 game.onUpdate(function () {
     if (characterAnimations.matchesRule(Cannonbolt, characterAnimations.rule(Predicate.MovingUp))) {
         animation.runImageAnimation(
