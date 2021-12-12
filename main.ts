@@ -509,14 +509,15 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     }
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    game.over(false, effects.dissolve)
+    statusbar3.value += 5
 })
 statusbars.onZero(StatusBarKind.Health, function (status) {
-	
+    game.over(false, effects.dissolve)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     statusbar.value += -5
 })
+let statusbar3: StatusBarSprite = null
 let statusbar: StatusBarSprite = null
 let Cannonbolt: Sprite = null
 Cannonbolt = sprites.create(img`
@@ -542,7 +543,7 @@ tiles.setTilemap(tilemap`level1`)
 scene.cameraFollowSprite(Cannonbolt)
 statusbar = statusbars.create(20, 4, StatusBarKind.Health)
 let statusbar2 = statusbars.create(20, 4, StatusBarKind.Timer)
-let statusbar3 = statusbars.create(20, 4, StatusBarKind.PointSystem)
+statusbar3 = statusbars.create(20, 4, StatusBarKind.PointSystem)
 statusbar.setBarBorder(1, 15)
 statusbar.setBarSize(30, 6)
 statusbar.max = 100
